@@ -1,2 +1,5 @@
 # ListFlowBot
-Mail Flow agent for Office 365 to empower ListServ like service. 
+---
+> Powered by the python and [!["Microsoft Graph API"]()]
+>
+---
