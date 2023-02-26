@@ -1,0 +1,15 @@
+[Unit]
+Description=mailflowbot
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=2
+User=mailflowbot
+WorkingDirectory=/etc/listflowbot/
+ExecStart=python3 /etc/listflowbot/main.py
+
+[Install]
+WantedBy=multi-user.target
