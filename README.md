@@ -14,7 +14,9 @@ To provide ListServe features to [["Microsoft Office 365"]()].  With this servic
 Add to Azure for GraphAPI access https://learn.microsoft.com/en-us/graph/tutorials/python?tabs=aad&tutorial-step=1
 
 ## Donate
----
-All development projects are fueled by personal time and caffine.  If you feel so inclinded please feel free to buy a cup. 
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/sparksbenjamin)
 ---
+>All development projects are fueled by personal time and caffine.  If you feel so inclinded please feel free to buy a cup. 
+---
+
+
