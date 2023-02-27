@@ -1,12 +1,11 @@
-# mailflowbot
+# ListFlowBot
 ---
 > Powered by the python and [["Microsoft Graph API"](https://learn.microsoft.com/en-us/graph/overview)]
->
 ---
 This a catch and release system.  It watches a shared mailbox and resents the email to a email address including a Office 365 group or DL.  Mail flow logs will stay within Office 365 along with all access rules. 
 
 ## Purpose
-To provide ListServe features to [["Microsoft Office 365"]()].  With this service 
+To provide ListServe features to [["Microsoft Office 365"]()].  With this service it will check the mailbox and resend any messages as it's self to the email address provided. 
 
 ## Useage
 
