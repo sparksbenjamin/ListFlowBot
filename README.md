@@ -11,7 +11,24 @@ To provide ListServe features to [["Microsoft Office 365"]()].  With this servic
 ## Useage
 
 ## Setup
+There are a few steps to complete to get this system running.  You will need to create an Application in Azure AD and provide it API access and get the keys.  
+
+### Azure Setup
 Add to Azure for GraphAPI access https://learn.microsoft.com/en-us/graph/tutorials/python?tabs=aad&tutorial-step=1
+
+### System Setup
+
+#### Install
+
+Download the latest version
+`git clone ""`
+
+
+
+
+### Lists Setup
+
+
 
 ## Donate
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/sparksbenjamin)

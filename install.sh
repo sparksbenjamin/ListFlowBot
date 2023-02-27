@@ -1,3 +1,4 @@
+python -m pip install -r requirements.txt
 mkdir -p /etc/listflowbot
 groupadd listflowbot
 useradd -g listflowbot listflowbot
