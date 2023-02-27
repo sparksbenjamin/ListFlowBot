@@ -21,10 +21,13 @@ Add to Azure for GraphAPI access https://learn.microsoft.com/en-us/graph/tutoria
 #### Install
 
 Download the latest version
-`git clone ""`
 
-
-
+```
+git clone https://github.com/sparksbenjamin/ListFlowBot
+cd ListFlowBot
+chmod +x install.sh
+sudo ./install.sh
+```
 
 ### Lists Setup
 
