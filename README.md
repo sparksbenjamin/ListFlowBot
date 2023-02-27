@@ -22,6 +22,7 @@ Add to Azure for GraphAPI access https://learn.microsoft.com/en-us/graph/tutoria
 Download the latest version
 
 ```
+sudo apt install python
 git clone https://github.com/sparksbenjamin/ListFlowBot
 cd ListFlowBot
 chmod +x install.sh
@@ -29,7 +30,7 @@ sudo ./install.sh
 ```
 
 ### Lists Setup
-
+A lists is a combination of a Front Facing mailbox and group to send the messages to.  You can restrict who can send to mailbox using any of your other means.  All of your Mail restrictions provided by o365 are still in effect and this system does not attempt to work around them. 
 
 
 ## Donate
