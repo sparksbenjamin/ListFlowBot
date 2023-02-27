@@ -64,7 +64,7 @@ def process_mailbox(session,list):
                 delete_msg(session,msg)
     del msgs
 while True:
-    session = get_session(os.environ['clientId'],os.environ['tenantId'],os.environ['secret'],os.environ['username'],os.environ['password'],os.environ['to'])
+    session = get_session(os.environ['clientId'],os.environ['tenantId'],os.environ['secret'],os.environ['username'],os.environ['password'])
     msgs = get_messages(session)
     num_msgs = len(msgs)
     #print(len(msgs))
@@ -73,7 +73,6 @@ while True:
             for msg in msgs:
                 resend_msg(session,msg,os.environ['to'])
                 delete_msg(session,msg)
-    
     session.close()
     time.sleep(2)
     del session
