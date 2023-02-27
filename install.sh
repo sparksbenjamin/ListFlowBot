@@ -8,7 +8,7 @@ cp main.conf /etc/listflowbot/main.conf
 cp main.py /etc/listflowbot
 cp functions.py /etc/listflowbot
 cp listflowbot.py /etc/listflowbot
-chmod +x /etc/listflowbot/mailflowbot.py
+chmod +x /etc/listflowbot/listflowbot.py
 chmod a+x /etc/listflowbot
 file=/etc/systemd/system/listflowbot.service
 if test -f "$file"; then

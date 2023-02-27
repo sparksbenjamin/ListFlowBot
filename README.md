@@ -2,7 +2,7 @@
 ---
 > Powered by the python and [["Microsoft Graph API"](https://learn.microsoft.com/en-us/graph/overview)]
 ---
-This a catch and release system.  It watches a shared mailbox and resents the email to a email address including a Office 365 group or DL.  Mail flow logs will stay within Office 365 along with all access rules. 
+This a catch and release system.  It watches a shared mailbox and resends the email to a email address including a Office 365 group or DL.  Mail flow logs will stay within Office 365 along with all access rules. 
 
 ## Purpose
 To provide ListServe features to [["Microsoft Office 365"]()].  With this service it will check the mailbox and resend any messages as it's self to the email address provided. 
@@ -22,7 +22,7 @@ Add to Azure for GraphAPI access https://learn.microsoft.com/en-us/graph/tutoria
 Download the latest version
 
 ```
-sudo apt install python
+sudo apt install python3 git
 git clone https://github.com/sparksbenjamin/ListFlowBot
 cd ListFlowBot
 chmod +x install.sh
