@@ -54,7 +54,7 @@ def resend_msg(session,msg,list):
                 "contentType": msg['body']['contentType'],
                 "content": msg['body']['content']
             },
-            "toRecipients": [
+            "bccRecipients": [
                 {
                     "emailAddress": {
                     "address": list['to']
