@@ -1,1 +1,1 @@
-python3 /etc/mailflowbot/listflowbot.py
+python3 /etc/listflowbot/listflowbot.py
