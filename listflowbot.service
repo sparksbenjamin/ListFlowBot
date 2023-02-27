@@ -7,7 +7,7 @@ StartLimitIntervalSec=0
 Type=simple
 Restart=always
 RestartSec=2
-User=mailflowbot
+User=listflowbot
 WorkingDirectory=/etc/listflowbot/
 ExecStart=python3 /etc/listflowbot/main.py
 
