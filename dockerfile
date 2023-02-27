@@ -1,9 +1,6 @@
-FROM python:latest
-COPY install/requirements.txt   /root/requirements.txt
-COPY listflow_docker.py /root/listflow_docker.py
-COPY run.sh /root/run.sh
-
-
-CMD ["bash", "/root/run.sh"]
-
-
+FROM python:3
+WORKDIR /usr/src/app
+COPY install/requirements.txt   ./
+RUN pip install --no-cache-dir -r requirements.txt
+COPY listflow_docker.py ./
+CMD [ "python", "listflow_docker.py" ]
