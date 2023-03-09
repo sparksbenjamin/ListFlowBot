@@ -3,6 +3,7 @@ import os
 import json
 import time
 import decimal
+
 def get_session(client,tenat,secret,username,password):
     session = requests.session()
     token_url = 'https://login.microsoftonline.com/' + tenat + '/oauth2/token'
@@ -30,6 +31,7 @@ def resend_msg(session,msg,to):
     fw_msg = {
         "message": {
             "subject": msg['subject'],
+            "replyTo": msg['from'],
             "body": {
                 "contentType": msg['body']['contentType'],
                 "content": msg['body']['content']
@@ -67,9 +69,10 @@ def process_mailbox(session,list):
                 delete_msg(session,msg)
     del msgs
 
+
 while True:
     stime = decimal.Decimal(time.perf_counter())
-    session = get_session(os.environ['clientId'],os.environ['tenantId'],os.environ['secret'],os.environ['username'],os.environ['password'])
+    session = get_session(cid,os.environ['tenantId'],os.environ['secret'],os.environ['username'],os.environ['password'])
     
     msgs = get_messages(session)
     num_msgs = len(msgs)
