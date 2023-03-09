@@ -72,7 +72,7 @@ def process_mailbox(session,list):
 
 while True:
     stime = decimal.Decimal(time.perf_counter())
-    session = get_session(cid,os.environ['tenantId'],os.environ['secret'],os.environ['username'],os.environ['password'])
+    session = get_session(os.environ['clientId'],os.environ['tenantId'],os.environ['secret'],os.environ['username'],os.environ['password'])
     
     msgs = get_messages(session)
     num_msgs = len(msgs)
