@@ -41,13 +41,8 @@ def resend_msg(session,msg,to):
                     }
                 }
             ],
-            "replyTo":[
-                {
-                    "emailAddress":{
-                        "address": msg['from']
-                    }
-                }
-            ]
+            "replyTo": msg['from']
+            
         },
         "saveToSentItems": "false"
     }
