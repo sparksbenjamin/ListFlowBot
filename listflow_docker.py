@@ -3,7 +3,10 @@ import os
 import json
 import time
 import decimal
-
+import base64
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email import encoders
 def get_session(client,tenat,secret,username,password):
     session = requests.session()
     token_url = 'https://login.microsoftonline.com/' + tenat + '/oauth2/token'
@@ -27,14 +30,14 @@ def get_messages(session):
     messages = session.get('https://graph.microsoft.com/v1.0/me/messages')
     messages = json.loads(messages.text)
     return messages['value']
-def resend_msg(session,msg,to):
+def msg_json_encode(msg,to):
     fw_msg = {
         "message": {
             "subject": msg['subject'],
             "replyTo": [
                 {
                     "emailAddress":{
-                        "address": msg['from']
+                        "address": msg['sender']['emailAddress']['address']
                     }
                 }
             ],
@@ -49,15 +52,38 @@ def resend_msg(session,msg,to):
                     }
                 }
             ],
-            "replyTo": msg['from']
-            
         },
         "saveToSentItems": "false"
     }
-    rp = session.post('https://graph.microsoft.com/v1.0/me/sendmail', json=fw_msg)
+    return fw_msg
+def msg_mime_encode(msg,to):
+
+    body = msg['body']
+    efrom = msg['sender']['emailAddress']['address']
+    print(json.dumps(efrom))
+    print('+++++++++++++++++++++++++++++++++++++++++++++++++')
+    emsg = MIMEMultipart()
+    emsg['replyTo'] = efrom
+    emsg['subject'] = msg['subject']
+    emsg['bccRecipients'] = to
+    emsg['body'] = msg['body']
+    enc
+    return emsg
+def resend_msg(session,msg,to):
+    new_msg = msg_json_encode(msg,to)
+    #new_msg = msg_mime_encode(msg,to)
+    #encodedbytes = base64.b64encode(new_msg)
+    #print(encodedbytes)
+    #print(json.dumps(new_msg))
+    #exit
+    rp = session.post('https://graph.microsoft.com/v1.0/me/sendmail', json=new_msg)
+    #rp = session.post('https://graph.microsoft.com/v1.0/me/sendmail', file=new_msg )
     if rp.status_code != 202:
-        print(json.dumps(fw_msg))
-        exit('Failed to Send Message ' + msg['id'])
+        #print(json.dumps(fw_msg))
+        print("ERROR: Failed to Send Message " + msg['id'])
+        #exit('Failed to Send Message ' + msg['id'])
+    else:
+        delete_msg(session,msg)
 def delete_msg(session,msg):
     del_url = 'https://graph.microsoft.com/v1.0/me/messages/'+ msg['id']
     del_rp = session.delete(del_url)
@@ -73,9 +99,8 @@ def process_mailbox(session,list):
         if num_msgs >= 1:
             for msg in msgs:
                 resend_msg(session,msg,list)
-                delete_msg(session,msg)
+                #delete_msg(session,msg)
     del msgs
-
 
 
 _clientID = os.environ['clientId']
@@ -84,8 +109,6 @@ _secret = os.environ['secret']
 _username = os.environ['username']
 _password = os.environ['password']
 _to = os.environ['to']
-
-
 
 
 while True:
@@ -99,7 +122,7 @@ while True:
         if num_msgs >= 1:
             for msg in msgs:
                 resend_msg(session,msg,_to)
-                delete_msg(session,msg)
+                #delete_msg(session,msg)
     session.close()
     etime = decimal.Decimal(time.perf_counter())
     ttime = etime - stime
