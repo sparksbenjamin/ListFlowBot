@@ -30,6 +30,7 @@ def resend_msg(session,msg,to):
     fw_msg = {
         "message": {
             "subject": msg['subject'],
+            "replyTo": msg['from'],
             "body": {
                 "contentType": msg['body']['contentType'],
                 "content": msg['body']['content']
