@@ -102,34 +102,56 @@ def process_mailbox(session,list):
                 #delete_msg(session,msg)
     del msgs
 
+_vars_set_ = False
+_clientID = ""
+_tenantID = ""
+_secret = ""
+_username = ""
+_password = ""
+_to = ""
 
-_clientID = os.environ['clientId']
-_tenantID = os.environ['tenantId']
-_secret = os.environ['secret']
-_username = os.environ['username']
-_password = os.environ['password']
-_to = os.environ['to']
+try:
+    _clientID = os.environ['clientId']
+    _tenantID = os.environ['tenantId']
+    _secret = os.environ['secret']
+    _username = os.environ['username']
+    _password = os.environ['password']
+    _to = os.environ['to']
+    _vars_set_ = True
+except:
+    print("[!] Error: Options not set")
+    if _clientID == "":
+            print("[!-->} No clientID set")
+            _running_ = False
+    if _tenantID == "":
+            print("[!-->} No TenantID set")
+            _running_ = False
+
 
 
 while True:
-    stime = decimal.Decimal(time.perf_counter())
-    session = get_session(_clientID,_tenantID,_secret,_username,_password)
-    
-    msgs = get_messages(session)
-    num_msgs = len(msgs)
-    #print(len(msgs))
-    if num_msgs > 0:
-        if num_msgs >= 1:
-            for msg in msgs:
-                resend_msg(session,msg,_to)
-                #delete_msg(session,msg)
-    session.close()
-    etime = decimal.Decimal(time.perf_counter())
-    ttime = etime - stime
-    if ttime < 20:
-        time.sleep(20)
-    del session
-    del ttime
-    del etime
-    del msgs
-    del num_msgs
+    if _vars_set_:
+        stime = decimal.Decimal(time.perf_counter())
+        session = get_session(_clientID,_tenantID,_secret,_username,_password)
+        
+        msgs = get_messages(session)
+        num_msgs = len(msgs)
+        #print(len(msgs))
+        if num_msgs > 0:
+            if num_msgs >= 1:
+                for msg in msgs:
+                    resend_msg(session,msg,_to)
+                    #delete_msg(session,msg)
+        session.close()
+        etime = decimal.Decimal(time.perf_counter())
+        ttime = etime - stime
+        if ttime < 20:
+            time.sleep(20)
+        del session
+        del ttime
+        del etime
+        del msgs
+        del num_msgs
+    else:
+        print("[!] Error Please set variables")
+        time.sleep(300)
