@@ -56,7 +56,7 @@ def resend_msg(session,msg,to):
     }
     rp = session.post('https://graph.microsoft.com/v1.0/me/sendmail', json=fw_msg)
     if rp.status_code != 202:
-        json.dumps(fw_msg)
+        print(json.dumps(fw_msg))
         exit('Failed to Send Message ' + msg['id'])
 def delete_msg(session,msg):
     del_url = 'https://graph.microsoft.com/v1.0/me/messages/'+ msg['id']
@@ -75,14 +75,9 @@ def process_mailbox(session,list):
                 resend_msg(session,msg,list)
                 delete_msg(session,msg)
     del msgs
-_clientID = "527bbbd2-68fb-4795-8c9b-002379c44db4"
-_tenantID = "46f0ffaa-b105-4456-9a87-347d09b5db50"
-_secret = "NH88Q~cIrbO9DKo~co3lgrg2S6whqZ7OOfGsUahO"
-_username = "test43@kkpoa.com"
-_password = "Mal35990 "
-_to = "sparksbenjmain@gmail.com"
 
-'''
+
+
 _clientID = os.environ['clientId']
 _tenantID = os.environ['tenantId']
 _secret = os.environ['secret']
@@ -90,7 +85,7 @@ _username = os.environ['username']
 _password = os.environ['password']
 _to = os.environ['to']
 
-'''
+
 
 
 while True:
