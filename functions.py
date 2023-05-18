@@ -112,7 +112,7 @@ def save_config(config):
     with open(config_file_path,'w',encoding='utf-8') as outfile:
         json.dump(config, outfile, ensure_ascii=False, indent=4)
 def load_config():
-    
+    print('Loading Configs')
     # Check for file exists
     file_exists = exists(config_file_path)
     if file_exists:

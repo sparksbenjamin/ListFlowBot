@@ -83,6 +83,7 @@ def resend_msg(session,msg,to):
         print("ERROR: Failed to Send Message " + msg['id'])
         #exit('Failed to Send Message ' + msg['id'])
     else:
+        print("Message forwarded to " + to)
         delete_msg(session,msg)
 def delete_msg(session,msg):
     del_url = 'https://graph.microsoft.com/v1.0/me/messages/'+ msg['id']
@@ -145,6 +146,7 @@ while True:
         session.close()
         etime = decimal.Decimal(time.perf_counter())
         ttime = etime - stime
+        print("Process Mailbox in " + ttime)
         if ttime < 20:
             time.sleep(20)
         del session
